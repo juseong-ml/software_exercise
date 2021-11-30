@@ -1,13 +1,15 @@
 from pynput.keyboard import Key, Listener, KeyCode
 import win32api
+from gui import front
 
 #단축키 정하기
 
 store = set()
 
 HOT_KEYS = {
-    'print_hello': set([Key.alt_l, KeyCode(char='1')])
-    , 'open_notepad': set([Key.alt_l, KeyCode(char='2')])
+    'print_hello': set([Key.alt_l, KeyCode(char='1')]),
+    'open_notepad': set([Key.alt_l, KeyCode(char='2')]),
+    'open_gui' : set([Key.alt_l, KeyCode(char='s')])
 }
 
 
@@ -22,6 +24,11 @@ def open_notepad():
     except Exception as err:
         print(err)
 
+def open_gui():
+    try:
+        front()
+    except:
+        print(err)
 
 def handleKeyPress(key, **kwargs):
     store.add(key)
