@@ -1,0 +1,15 @@
+[Life is short, Use #]
+
+<파이썬 단축키 만들기>
+https://30aichallenge.tistory.com/119
+https://www.youtube.com/watch?v=EZcy82TU6Hs
+<파이썬 파일명 규칙따라 폴더 자동 분류하기>
+https://ybworld.tistory.com/103
+<파이썬 날짜로 파일명 변경 프로그램 만들기>
+https://limecolor.tistory.com/entry/%EA%B0%9C%EC%9D%B8%EC%9A%A9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0%EC%82%AC%EC%A7%84-%EC%A0%95%EB%A6%AC%EB%A5%BC-%EC%9C%84%ED%95%B4-%EB%82%A0%EC%A7%9C%EB%A1%9C-%ED%8C%8C%EC%9D%BC%EB%AA%85-%EB%B3%80%EA%B2%BD-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0
+<이미지 태그 관리>
+소실 강의노트 47page
+<인스타그램 크롤링?>
+<tkinter>
+https://wikidocs.net/132610
+https://kshyun87.tistory.com/38?category=541865
