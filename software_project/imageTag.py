@@ -4,7 +4,8 @@ import piexif
 img = Image.open('images/junghwa_001.jpg')
 
 if 'exif' not in img.info.keys(): # 이미지 파일에 exif 메타정보가 없으면 생성하고
-    zeroth_ifd = {piexif.ImageIFD.Make:u"lovley",
+    zeroth_ifd = {
+                  # piexif.ImageIFD.Make:u"lovley",
                   piexif.ImageIFD.XResolution: (0,0),
                   piexif.ImageIFD.YResolution: (0,0),
                   piexif.ImageIFD.Software: u"piexif"
@@ -25,9 +26,11 @@ if 'exif' not in img.info.keys(): # 이미지 파일에 exif 메타정보가 없
     exif_bytes = piexif.dump(exif_dict)
     piexif.insert(exif_bytes, 'images/junghwa_001.jpg')
 
-else: # 메타 정보가 있으면 270번 위치에 원하는 텍스트를 부여한 후, 저장한다.
-    exif_dict = piexif.load(img.info['exif'])
-    exif_dict['0th'][270] = u'lovely'
-    exif_bytes = piexif.dump(exif_dict)
-    new_file = 'images/junghwa_001.jpg'
-    img.save(new_file, 'jpg', exif=exif_bytes)
+# else: # 메타 정보가 있으면 270번 위치에 원하는 텍스트를 부여한 후, 저장한다.
+#     exif_dict = piexif.load(img.info['exif'])
+#     exif_dict['0th'][270] = u'lovely'
+#     exif_bytes = piexif.dump(exif_dict)
+#     new_file = 'images/junghwa_001.jpg'
+#     img.save(new_file, 'jpg', exif=exif_bytes)
+img = Image.open('images/junghwa_001.jpg')
+print(img.info.items())
