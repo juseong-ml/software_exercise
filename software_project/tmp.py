@@ -1,8 +1,9 @@
-a = '주성'
+ls = []
 
-b = a.encode('utf-8')
+def cc():
+    ls.append(2)
 
-print(b)
+cc()
 
-c = b.decode('utf-8')
-print(c)
+
+print(ls)
