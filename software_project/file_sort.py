@@ -26,6 +26,7 @@ def makeFolder(path_after:str, file_list:list):
         except:
             pass
 
+
 def moveFile(path_before, path_after):
     folderlist = os.listdir(path_after) # 이동시킬 경로에 생성된 분류별 폴더 리스트화
     filelist = os.listdir(path_before) #이동시킬 파일명들을 리스트화
