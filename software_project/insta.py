@@ -26,7 +26,7 @@ for i in insta:
     # print('http://instagram.com/' + i.a['href'])
     imgUrl = i.select_one('.KL4Bh').img['src']
     with urlopen(imgUrl) as f:
-        with open('./insta_images/' + plusUrl + '_' + str(n) + '.jpg', 'wb') as h:
+        with open('./insta/' + plusUrl + '_' + str(n).zfill(3) + '.jpg', 'wb') as h:
             img = f.read()
             h.write(img)
     n += 1
