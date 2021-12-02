@@ -1,9 +1,17 @@
+d = dict()
+
+d['a'] = 1223
+d['b'] = 4516
+
+print(d)
+
 ls = []
 
-def cc():
-    ls.append(2)
+def base():
+    global ls
+    ls.append(1)
 
-cc()
 
 
+base()
 print(ls)

@@ -8,8 +8,6 @@ import shutil
 
 
 
-
-
 root = Tk()
 
 root.title('sorting')
@@ -57,13 +55,18 @@ def start():
     sort_img()
 
 def sort_img(): #모든 파일 목록을 가져오기
-
     #정렬 방법
     sort_method = cmb_sort.get()
     if sort_method == '날짜별':
-        sort_method = int(sort_method)
+        sort_method = 1
+    else: # 이름별
+        sort_method = 2
 
-
+    space_method = cmb_space.get()
+    if space_method == '복사':
+        space_method = 1
+    else: # 이동
+        space_method = 2
 
     image_list = [list_file.get(0,END)] #선택한 파일들
 
@@ -72,40 +75,57 @@ def sort_img(): #모든 파일 목록을 가져오기
         p_var.set(progress)
         progress_bar.update()
 
-
     path_before = os.path.dirname(list_file.get(0))
     #path_before :  #C:/Users/Jessie인영/Desktop/software_exercise/software_project/insta
     category = [] # 분류 데이터 저장을 위해 빈 리스트 생성
 
+    if sort_method == 1: #날짜별
+        image_list = list(image_list[0])
+        for file in image_list:
+            print(file)
+            temp_list = file.split('/')
+            category.append(temp_list[-1].split('_')[1])
+        temp_set = set(category)
+        file_list = list(temp_set) # 날짜들 리스트
+        path_after = txt_dest_path.get()
+        filelist = os.listdir(path_before)
+        dict = {}
+        for file in filelist:
+            folder_list = file.split('_')
+            dict[file] = folder_list[1]
 
-    for file in image_list:
-        temp_list = file[0].split('/') #파일명중 "_"로 분리하여 리스트화
-        category.append(temp_list[-1].split('_')[0]) #리스트의 -2 인덱싱 데이터를 category에 추가
+    if sort_method == 2: #이름별
+        for file in image_list:
+            temp_list = file[0].split('/') #파일명중 "_"로 분리하여 리스트화
+            category.append(temp_list[-1].split('_')[0]) #리스트의 -2 인덱싱 데이터를 category에 추가
 
-    temp_set = set(category) #중복을 제거하기 위해 set 사용
-    file_list = list(temp_set) #다시 리스트화화
-    # print(file_list)
+        temp_set = set(category) #중복을 제거하기 위해 set 사용
+        file_list = list(temp_set) #다시 리스트화화
 
-    path_after = txt_dest_path.get()
-    # 이동시킬 경로에 생성된 분류별 폴더 리스트화
-    filelist = os.listdir(path_before)  # 이동시킬 파일명들을 리스트화
-    dict = {}
+        path_after = txt_dest_path.get()
+        # 이동시킬 경로에 생성된 분류별 폴더 리스트화
+        filelist = os.listdir(path_before)  # 이동시킬 파일명들을 리스트화
+        dict = {}
 
-    # 파일명에 대한 폴더명을 딕셔너리로 저장
-    for file in filelist:
-        temp_list = file.split("_")
-        dict[file] = temp_list[-2]  # {'파일명' : '분류'} 형태의 딕셔너리 생성
+        # 파일명에 대한 폴더명을 딕셔너리로 저장
+        for file in filelist:
+            temp_list = file.split("_")
+            dict[file] = temp_list[-2]  # {'파일명' : '분류'} 형태의 딕셔너리 생성
+
 
     for file in file_list:
         try:
             os.makedirs(path_after+'/'+file)
         except:
             pass
+
     # 딕셔너리 정보 활용하여 파일 이동
     for key, value in dict.items():
-        # print(key, value)
+        if space_method == 1: #복사
         # shutil.copy(path_after + '/' + value)
-        shutil.copy(path_before + "/" + key, path_after+ "/" + value)
+            shutil.copy(path_before + "/" + key, path_after+ "/" + value)
+        else: #이동
+            shutil.move(path_before + "/" + key, path_after+ "/" + value)
 
         # print(path_before + '/' + key, path_after + '/' + value)
     msgbox.showinfo("알림", "작업이 완료되었습니다.")
@@ -116,10 +136,10 @@ def sort_img(): #모든 파일 목록을 가져오기
 file_frame= Frame(root)
 file_frame.pack(fill='x',padx=5,pady=5)
 
-btn_add_file = Button(file_frame, padx=5, pady=5, width=12, text='파일추가', command=add_file)
+btn_add_file = Button(file_frame, padx=5, pady=5, width=10, text='파일추가', command=add_file)
 btn_add_file.pack(side='left')
 
-btn_del_file = Button(file_frame,padx=5, pady=5, width=12,  text='선택삭제', command=del_file)
+btn_del_file = Button(file_frame,padx=5, pady=5, width=10,  text='선택삭제', command=del_file)
 btn_del_file.pack(side='right')
 
 #리스트 프레임
@@ -142,26 +162,26 @@ txt_dest_path.pack(side='left', fill='x', expand=True,padx=5,pady=5, ipady=4) #�
 btn_dest_path = Button(path_frame, text='찾아보기', width=10, command=browse_dest_path)
 btn_dest_path.pack(side='right',padx=5,pady=5, ipady=5)
 
-#옵션 프레임
+
 frame_optiom = LabelFrame(root, text='옵션')
 frame_optiom.pack(padx=5,pady=5)
 
-#정렬 방법 옵션
-#정렬방법 레이블
+#가로 넓이 옵션
+#가로 넓이 레이블
 lbl_sort = Label(frame_optiom, text='정렬 방법', width=8)
 lbl_sort.pack(side='left',padx=5,pady=5)
-#정렬 방법 콤보
+#가로 넓이 콤보
 opt_sort = ['날짜별', '이름별']
-cmb_sort = ttk.Combobox(frame_optiom, state='readonly', values=opt_width, width=10)
+cmb_sort = ttk.Combobox(frame_optiom, state='readonly', values=opt_sort, width=10)
 cmb_sort.current(0)
 cmb_sort.pack(side='left',padx=5,pady=5)
 
 # 간격 옵션
 # 간격 옵션 레이블
-lbl_space = Label(frame_optiom, text='간격', width=8)
+lbl_space = Label(frame_optiom, text='정렬 형태', width=8)
 lbl_space.pack(side='left')
 # 간격 옵션 콤보
-opt_space = ['없음', '좁게', '보통', '넓게']
+opt_space = ['이동', '복사']
 cmb_space = ttk.Combobox(frame_optiom, state='readonly', values=opt_space, width=10)
 cmb_space.current(0)
 cmb_space.pack(side='left',padx=5,pady=5)

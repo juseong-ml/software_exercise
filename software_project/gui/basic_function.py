@@ -9,15 +9,14 @@ import shutil
 
 
 
-
 root = Tk()
 
-root.title('sorting')
+root.title('Sorting_picAmaze')
 root.geometry('400x530+500+400')
 
 
 
-root.resizable(False, False)
+root.resizable(True, True)
 
 
 #파일 추가
@@ -66,7 +65,6 @@ def sort_img(): #모든 파일 목록을 가져오기
 
 
     path_before = os.path.dirname(list_file.get(0))
-    #path_before :  #C:/Users/Jessie인영/Desktop/software_exercise/software_project/insta
     category = [] # 분류 데이터 저장을 위해 빈 리스트 생성
 
 
@@ -95,12 +93,17 @@ def sort_img(): #모든 파일 목록을 가져오기
             pass
     # 딕셔너리 정보 활용하여 파일 이동
     for key, value in dict.items():
-        # print(key, value)
-        # shutil.copy(path_after + '/' + value)
+
         shutil.copy(path_before + "/" + key, path_after+ "/" + value)
 
-        # print(path_before + '/' + key, path_after + '/' + value)
+
+
+
+
     msgbox.showinfo("알림", "작업이 완료되었습니다.")
+
+
+
 
 
 
@@ -150,10 +153,10 @@ cmb_width.pack(side='left',padx=5,pady=5)
 
 # 간격 옵션
 # 간격 옵션 레이블
-lbl_space = Label(frame_optiom, text='간격', width=8)
+lbl_space = Label(frame_optiom, text='정렬 형태', width=8)
 lbl_space.pack(side='left')
 # 간격 옵션 콤보
-opt_space = ['없음', '좁게', '보통', '넓게']
+opt_space = ['이동', '복사']
 cmb_space = ttk.Combobox(frame_optiom, state='readonly', values=opt_space, width=10)
 cmb_space.current(0)
 cmb_space.pack(side='left',padx=5,pady=5)
