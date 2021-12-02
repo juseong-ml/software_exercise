@@ -57,6 +57,14 @@ def start():
     sort_img()
 
 def sort_img(): #모든 파일 목록을 가져오기
+
+    #정렬 방법
+    sort_method = cmb_sort.get()
+    if sort_method == '날짜별':
+        sort_method = int(sort_method)
+
+
+
     image_list = [list_file.get(0,END)] #선택한 파일들
 
     for idx, img in enumerate(image_list):
@@ -138,15 +146,15 @@ btn_dest_path.pack(side='right',padx=5,pady=5, ipady=5)
 frame_optiom = LabelFrame(root, text='옵션')
 frame_optiom.pack(padx=5,pady=5)
 
-#가로 넓이 옵션
-#가로 넓이 레이블
-lbl_width = Label(frame_optiom, text='정렬 방법', width=8)
-lbl_width.pack(side='left',padx=5,pady=5)
-#가로 넓이 콤보
-opt_width = ['날짜별', '이름별']
-cmb_width = ttk.Combobox(frame_optiom, state='readonly', values=opt_width, width=10)
-cmb_width.current(0)
-cmb_width.pack(side='left',padx=5,pady=5)
+#정렬 방법 옵션
+#정렬방법 레이블
+lbl_sort = Label(frame_optiom, text='정렬 방법', width=8)
+lbl_sort.pack(side='left',padx=5,pady=5)
+#정렬 방법 콤보
+opt_sort = ['날짜별', '이름별']
+cmb_sort = ttk.Combobox(frame_optiom, state='readonly', values=opt_width, width=10)
+cmb_sort.current(0)
+cmb_sort.pack(side='left',padx=5,pady=5)
 
 # 간격 옵션
 # 간격 옵션 레이블
