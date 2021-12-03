@@ -26,7 +26,7 @@ def print_hello():
 #
 def makeTag():
     try:
-        dd
+        dd.main()
     except Exception as err:
         print(err)
 

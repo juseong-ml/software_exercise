@@ -15,24 +15,25 @@ from TkinterDnD2 import *
 class App(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
-        self.parent = parent
+        self.root = parent
         self.initialzie()
-
         self.tag = dict()
+
+
     def initialzie(self):
         self.entry_sv = StringVar()
         self.entry_sv.set('Drop Here !')
-        self.entry_path = Entry(root, textvar=self.entry_sv,width=50, font=15)
+        self.entry_path = Entry(self.root, textvar=self.entry_sv,width=50, font=15)
         self.entry_path.pack(fill=X, padx=10, pady=10)
         self.entry_path.drop_target_register(DND_FILES)
         self.entry_path.dnd_bind('<<Drop>>', self.drop)
 
-        self.entry_tag = Entry(root, width=30)
+        self.entry_tag = Entry(self.root, width=30)
         self.entry_tag.place(width=200, height=30)
         self.entry_tag.insert(0, '#')
         self.entry_tag.pack(pady=20)
 
-        self.btn = Button(root, text='확인', command=self.get_value)
+        self.btn = Button(self.root, text='확인', command=self.get_value)
         self.btn.pack(pady=5)
 
         # btn.grid(column=1, row=0)
@@ -52,21 +53,19 @@ class App(Frame):
             w = csv.writer(f)
             w.writerow(self.tag.keys())
             w.writerow(self.tag.values())
-        root.quit()
-
-root = TkinterDnD.Tk()
-root.geometry("300x140+600+300")
-root.title('Make Tag')
-App(root)
-root.mainloop()
-
-# if __name__ == '__main__':
+        self.quit()
 #
-#     root = TkinterDnD.Tk()
-#     root.geometry("300x140+600+300")
-#     root.title('Make Tag')
-#     App(root)
-#     root.mainloop()
+
+def main():
+    root = TkinterDnD.Tk()
+    root.geometry("300x140+600+300")
+    root.title('Make Tag')
+    App(root)
+    root.mainloop()
+
+if __name__ == '__main__':
+
+    main()
 
 
 
