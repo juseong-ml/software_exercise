@@ -29,14 +29,14 @@ for i in range(0,5):
         imgList.append(imgUrl)
         # imgList = list(set(imgList))
         html = driver.page_source
-        soup = BeautifulSoup(html)
+        soup = BeautifulSoup(html, features='lxml')
         insta = soup.select('.v1Nh3.kIKUG._bz0w')
 
     driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
     time.sleep(2)
 
-n=0
-for i in range(0,100):
+n=1
+for i in range(0,50):
 
     image_url = imgList[n]
     resp = requests.get(image_url, stream=True)

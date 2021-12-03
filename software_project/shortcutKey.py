@@ -1,7 +1,13 @@
 from pynput.keyboard import Key, Listener, KeyCode
 import win32api
 # from gui import front
-# from DnDDemo import drop
+import DnDDemo3 as dd
+import sys
+
+from TkinterDnD2 import *
+
+
+
 #단축키 정하기
 
 store = set()
@@ -20,7 +26,7 @@ def print_hello():
 #
 def makeTag():
     try:
-        from DnDDemo import drop
+        dd
     except Exception as err:
         print(err)
 

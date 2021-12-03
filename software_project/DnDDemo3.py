@@ -48,20 +48,26 @@ class App(Frame):
         # global tag_dict
         self.tag['tag'] = value[1:]
         # print(self.tag)
-        with open('tag_list.csv', 'w') as f:
+        with open('db/tag_list.csv', 'w') as f:
             w = csv.writer(f)
             w.writerow(self.tag.keys())
             w.writerow(self.tag.values())
-        self.quit()
+        root.quit()
+
+root = TkinterDnD.Tk()
+root.geometry("300x140+600+300")
+root.title('Make Tag')
+App(root)
+root.mainloop()
+
+# if __name__ == '__main__':
+#
+#     root = TkinterDnD.Tk()
+#     root.geometry("300x140+600+300")
+#     root.title('Make Tag')
+#     App(root)
+#     root.mainloop()
 
 
 
-
-if __name__ == '__main__':
-    root = TkinterDnD.Tk()
-    root.geometry("300x140+600+300")
-    root.title('Make Tag')
-    App(root)
-
-
-    root.mainloop()
+# main()
