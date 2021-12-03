@@ -82,7 +82,7 @@ def sort_img(): #모든 파일 목록을 가져오기
     if sort_method == 1: #날짜별
         image_list = list(image_list[0])
         for file in image_list:
-            print(file)
+
             temp_list = file.split('/')
             category.append(temp_list[-1].split('_')[1])
         temp_set = set(category)
@@ -95,10 +95,11 @@ def sort_img(): #모든 파일 목록을 가져오기
             dict[file] = folder_list[1]
 
     if sort_method == 2: #이름별
-        for file in image_list:
-            temp_list = file[0].split('/') #파일명중 "_"로 분리하여 리스트화
+        for file in list(image_list[0]):
+            # print(file)
+            temp_list = file.split('/') #파일명중 "_"로 분리하여 리스트화
             category.append(temp_list[-1].split('_')[0]) #리스트의 -2 인덱싱 데이터를 category에 추가
-
+        # print(category)
         temp_set = set(category) #중복을 제거하기 위해 set 사용
         file_list = list(temp_set) #다시 리스트화화
 

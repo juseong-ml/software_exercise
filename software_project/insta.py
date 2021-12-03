@@ -19,7 +19,10 @@ time.sleep(1)
 html = driver.page_source
 soup = BeautifulSoup(html, 'lxml')
 
-insta = soup.select('.v1Nh3.kIKUG._bz0w')
+imgList = []
+
+for i in range(0,5):
+    insta = soup.select('.v1Nh3.kIKUG._bz0w')
 
 n = 1
 for i in insta:

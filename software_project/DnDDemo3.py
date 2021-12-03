@@ -59,7 +59,7 @@ class App(Frame):
 
 if __name__ == '__main__':
     root = TkinterDnD.Tk()
-    root.geometry("300x150+600+300")
+    root.geometry("300x140+600+300")
     root.title('Make Tag')
     App(root)
 
